@@ -1,63 +1,97 @@
-let ROCK;
-let PAPER;
-let SCISSOR;
+const startGame = document.querySelector(".start");
 
-const gameObjects = [ 'ROCK', 'PAPER', 'SCISSOR']
+const gameObjects = ["ROCK", "PAPER", "SCISSOR"];
+const winners = [];
 
-//choose objects at random from the gameObjects array..
-// function chooseObject(){
-//     let gamePlay = gameObjects[Math.floor(Math.random() *gameObjects.length)]
-//     console.log(gamePlay)
-    
-// }
-// chooseObject();
-
-//this function allows the computer to cjoose any random object from gameObject array
-function computerPlay(){
-    let gamePlay = gameObjects[Math.floor(Math.random() *gameObjects.length)]
-    console.log(gamePlay)
-    return gamePlay    
+function game() {
+  for (let i = 1; i <= 5; i++) {
+    playRound(i);
+  }
+  recordScore();
 }
 
-const playerSelection = prompt("Input guess").toLocaleUpperCase();
-console.log(playerSelection)
-const computerSelection = computerPlay();
-
-function playRound(playerSelection, computerSelection){
-    if(playerSelection === computerSelection){
-        return `Its a Draw`
-    }else if ((playerSelection === 'ROCK') && (computerSelection === 'PAPER')){
-        return `You lose, PAPER covers ROCK`
-    }else if ((playerSelection === 'ROCK') && (computerSelection === 'SCISSOR')){
-        return `You won, Rock crushes SCISSOR`
-    
-    }else if(playerSelection === 'SCISSOR' && computerSelection === 'PAPER'){
-        return `You won this round!!, SCISSOR cuts PAPER`
-    }else if(playerSelection === 'SCISSOR' && computerSelection === 'ROCK'){
-        return `You lose, ROCK crushes SCISSOR`
-    }else if(playerSelection === 'PAPER' && computerSelection === 'ROCK'){
-        return `You won this round!!, PAPER covers ROCK`
-    }else if(playerSelection === 'PAPER' && computerSelection === 'SCISSOR'){
-        return `You lose, SCISSOR cuts PAPER`
-    }else{
-        console.log('It\'s a Tie')
-    }    
+function playRound(round) {
+  const playerSelection = playerChoice();
+  const computerSelection = computerChoice();
+  const winner = checkWinner(playerSelection, computerSelection);
+  winners.push(winner);
+  logRound(playerSelection, computerSelection, winner, round);
 }
 
-console.log(playRound(playerSelection, computerSelection));
+// function for players' choice
 
-function game(){
-    for ( let i =0; i < 5; i++){
+function playerChoice() {
+  let choice = prompt("Type Rock, Paper, or Scissors", "");
+  while (choice == null) {
+    choice = prompt("Type Rock, Paper, or Scissors", "");
+  }
+  choice = choice.toLocaleUpperCase();
 
-        
+  let check = validateChoice(choice);
+  while (check == false) {
+    choice = prompt("Type Rock, Paper, or Scissors. Spelling must be correct");
 
-        console.log(i)
+    while (choice == null) {
+      choice = prompt("Type Rock, Paper, or Scissors", "");
     }
+    choice = choice.toLocaleUpperCase();
+    check = validateChoice(choice);
+  }
+
+  return choice;
 }
-game(playRound());
 
+// function for computerss' choice
+function computerChoice() {
+  return gameObjects[Math.floor(Math.random() * gameObjects.length)];
+}
 
+// a function to validate input
+function validateChoice(choice) {
+  return gameObjects.includes(choice);
+  // if(gameObjects.includes(choice)){
+  //     return true
+  // }else{
+  //     return false
+  // }
+}
 
+//for simplification, since includes returns true or false...
+// return gameObjects.includes(choice)
 
-// console.log(playerSelection)
-// console.log(computerPlay())
+//function that plays the round
+
+function checkWinner(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    return `Its a Draw`;
+  } else if (
+    (playerSelection === "ROCK" && computerSelection === "SCISSOR") ||
+    (playerSelection === "PAPER" && computerSelection === "ROCK") ||
+    (playerSelection === "SCISSOR" && computerSelection === "PAPER")
+  ) {
+    return `Player`;
+  } else {
+    return `Computer`;
+  }
+}
+function recordScore() {
+  //   console.log(winners);
+  let playerWins = winners.filter((item) => item == "Player").length;
+  let computerWins = winners.filter((item) => item == "Computer").length;
+  let draws = winners.filter((item) => item == "Its a Draw").length;
+  console.log("Results:");
+  console.log("Player Wins:", playerWins);
+  console.log("Computer Wins:", computerWins);
+  console.log("Draws:", draws);
+
+  // an array method to filter through the array winners and check the conditions. Length shows us the number of times the item occured
+}
+function logRound(playerSelection, computerSelection, winner, round) {
+  console.log("Round:", round);
+  console.log("Player chose:", playerSelection);
+  console.log("Computer chose:", computerSelection);
+  console.log(winner, "Won the round");
+  console.log("----------------------------------------");
+}
+
+startGame.addEventListener("click", game);
