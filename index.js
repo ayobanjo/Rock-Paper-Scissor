@@ -29,7 +29,7 @@ function playRound(playerSelection, computerSelection){
     }else if ((playerSelection === 'ROCK') && (computerSelection === 'PAPER')){
         return `You lose, PAPER covers ROCK`
     }else if ((playerSelection === 'ROCK') && (computerSelection === 'SCISSOR')){
-        return `You won, Rock crshes SCISSOR`
+        return `You won, Rock crushes SCISSOR`
     
     }else if(playerSelection === 'SCISSOR' && computerSelection === 'PAPER'){
         return `You won this round!!, SCISSOR cuts PAPER`
@@ -40,7 +40,7 @@ function playRound(playerSelection, computerSelection){
     }else if(playerSelection === 'PAPER' && computerSelection === 'SCISSOR'){
         return `You lose, SCISSOR cuts PAPER`
     }else{
-        console.log('again')
+        console.log('It\'s a Tie')
     }    
 }
 
@@ -49,7 +49,9 @@ console.log(playRound(playerSelection, computerSelection));
 function game(){
     for ( let i =0; i < 5; i++){
 
-        console.log('')
+        
+
+        console.log(i)
     }
 }
 game(playRound());
