@@ -18,8 +18,6 @@ function playRound(round) {
   logRound(playerSelection, computerSelection, winner, round);
 }
 
-// function for players' choice
-
 function playerChoice() {
   let choice = prompt("Type Rock, Paper, or Scissors", "");
   while (choice == null) {
