@@ -47,11 +47,6 @@ function computerChoice() {
 // a function to validate input
 function validateChoice(choice) {
   return gameObjects.includes(choice);
-  // if(gameObjects.includes(choice)){
-  //     return true
-  // }else{
-  //     return false
-  // }
 }
 
 //for simplification, since includes returns true or false...
