@@ -5,3 +5,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-size: 18px;
+  background-image: url(./Design/images/bg-triangle.svg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+header {
+  padding: 2rem 0;
+  margin: 1rem auto;
+  border: 2px solid rgb(120, 119, 119);
+  color: #fff;
+}
