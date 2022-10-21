@@ -15,3 +15,10 @@ body {
   justify-content: space-between;
   min-height: 100vh;
 }
+
+header {
+  padding: 2rem 0;
+  margin: 1rem auto;
+  border: 2px solid rgb(120, 119, 119);
+  color: #fff;
+}
