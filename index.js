@@ -8,6 +8,7 @@ function game() {
     playRound(i);
   }
   recordScore();
+  finalWinner();
 }
 
 function playRound(round) {
@@ -85,6 +86,16 @@ function logRound(playerSelection, computerSelection, winner, round) {
   console.log("Computer chose:", computerSelection);
   console.log(winner, "Won the round");
   console.log("----------------------------------------");
+}
+
+function finalWinner(playerWins, computerWins) {
+  if (playerWins > computerWins) {
+    console.log("----------------------------------------");
+    console.log("Player wins Game");
+  } else {
+    console.log("----------------------------------------");
+    console.log("Computer wins");
+  }
 }
 
 startGame.addEventListener("click", game);
