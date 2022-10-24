@@ -27,7 +27,6 @@ main {
   background-image: url(./Design/images/bg-triangle.svg);
   background-repeat: no-repeat;
   background-position: center;
-  /* flex: 1; */
   min-height: 60vh;
   width: 100%;
 }
