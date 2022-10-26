@@ -20,16 +20,17 @@ body {
 }
 
 header {
-  padding: 2rem 0;
   margin: 1rem auto;
-  border: 2px solid rgb(120, 119, 119);
   color: #fff;
 }
 main {
   background-image: url(./Design/images/bg-triangle.svg);
   background-repeat: no-repeat;
   background-position: center;
-  /* flex: 1; */
   min-height: 60vh;
   width: 100%;
+}
+
+h1 {
+  margin: 0.5rem 0;
 }
